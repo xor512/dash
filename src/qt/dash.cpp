@@ -600,6 +600,9 @@ int main(int argc, char *argv[])
     QApplication::setAttribute(Qt::AA_DontShowIconsInMenus);
 #endif
 #if QT_VERSION >= 0x050500
+    // FIXME: Fix for dash-qt on Arch hanging from https://github.com/bitcoin/bitcoin/issues/14273
+    QSslSocket::sslLibraryVersionString(); // An unnecessary check to solve issue #14273: bitcoin-qt stops while switching SSLv3 to TLS on Arch Linux
+
     // Because of the POODLE attack it is recommended to disable SSLv3 (https://disablessl3.com/),
     // so set SSL protocols to TLS1.0+.
     QSslConfiguration sslconf = QSslConfiguration::defaultConfiguration();
