@@ -1913,6 +1913,9 @@ void CConnman::ThreadOpenAddedConnections()
         LOCK(cs_vAddedNodes);
         if (mapMultiArgs.count("-addnode"))
             vAddedNodes = mapMultiArgs.at("-addnode");
+
+        vAddedNodes.insert(vAddedNodes.end(),
+            Params().IPSeeds().begin(), Params().IPSeeds().end());
     }
 
     while (true)

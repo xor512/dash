@@ -202,14 +202,15 @@ public:
         assert(consensus.hashGenesisBlock == uint256S(MAIN_GENESIS_HASH));
         assert(genesis.hashMerkleRoot == uint256S(MAIN_MERKLE_HASH));
 
-        // TODO: To create own cryptocurrency we should provide DNS names/IP addresses
-        // here for our nodes. I'm not doing that since for the sake of test purposes
-        // one can use -addnode argument for dash-cli or addnode parameter in config file
+        // To create own cryptocurrency we should provide DNS names
+        // here for seed nodes. Added vIPSeeds field to add IP address instead
+        // (this will have the same effect as -addnode command-line switch)
         //vSeeds.push_back(CDNSSeedData("dash.org", "dnsseed.dash.org"));
         //vSeeds.push_back(CDNSSeedData("dashdot.io", "dnsseed.dashdot.io"));
         //vSeeds.push_back(CDNSSeedData("masternode.io", "dnsseed.masternode.io"));
         //vSeeds.push_back(CDNSSeedData("dashpay.io", "dnsseed.dashpay.io"));
         vSeeds.clear();
+        vIPSeeds.push_back("217.99.89.99");
 
         // Dash addresses start with 'X'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,76);
